@@ -46,6 +46,11 @@ include("naremover.jl")
 using .NARemovers
 export NARemover
 
+include("openmltask.jl")
+using .OpenMLTaskReaders
+export OpenMLTaskReader
+export test_opmltaskreader
+
 include("pipelines.jl")
 using .Pipelines
 export @pipeline

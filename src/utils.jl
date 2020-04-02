@@ -28,14 +28,17 @@ with size of unique instances are less than `maxuniqcat` are
 considered categorical.
 """
 function find_catnum_columns(instances::DataFrame, maxuniqcat::Int=0)
+
   nominal_columns = Int[]
   real_columns = Int[]
+
   for column in 1:size(instances, 2)
     vdat = instances[:, column:column] # returns a 1-column dataframe
     col_eltype = infer_eltype(vdat)
+    println(col_eltype)
     # nominal if column type is not real or only small number of unique instances 
     # otherwise, real
-    if !<:(col_eltype, Real)
+    if !<:(col_eltype, Union{Missing,<:Real})
       push!(nominal_columns, column)
     elseif nrow(unique(vdat)) <= maxuniqcat
       push!(nominal_columns, column)
@@ -43,6 +46,7 @@ function find_catnum_columns(instances::DataFrame, maxuniqcat::Int=0)
       push!(real_columns, column)
     end
   end
+
   return (nominal_columns,real_columns)
 end
 
