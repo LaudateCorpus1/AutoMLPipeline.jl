@@ -52,7 +52,7 @@ using .NARemovers
 export NARemover
 
 include("openmltask.jl")
-using .OpenMLTaskReaders
+using .OpenMLReaders
 export OpenMLTaskReader
 export test_opmltaskreader
 
