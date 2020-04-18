@@ -12,7 +12,7 @@ using Random: randperm
 
 export holdout, kfold, score, infer_eltype, nested_dict_to_tuples,
        nested_dict_set!, nested_dict_merge, createmachine,
-       mergedict, getiris,
+       mergedict, getiris, getprofb,
        skipmean,skipmedian,skipstd,
        aggregatorclskipmissing,
        find_catnum_columns
@@ -327,5 +327,9 @@ function getiris()
   return iris
 end
 
+function getprofb()
+  profb = CSV.read(joinpath(Base.@__DIR__,"../data","profb.csv"))
+  return profb
+end
 
 end
